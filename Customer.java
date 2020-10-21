@@ -4,7 +4,7 @@ import java.util.Scanner;
 import javax.swing.*;
 public class Customer
 {
-    Scanner sc = new Scanner(System.in);
+    Ticket t = new Ticket();
     void run()
     {
         //menu driven what do you want to do
@@ -87,14 +87,14 @@ class Employee extends Customer{
     {
         //ask if paying by cash or card
         //update the database for the particular employee
-        obj.loadData();     //load the details of dues
+        System.out.println("Your Bill Amount is " + t.computeBill());
         System.out.println("Press 1: Cash\nPress 2: Card");
         switch (sc.nextInt()) {
             case 1 -> System.out.println("Amount successfully paid");
             case 2 -> System.out.println("Amount successfully paid");
             default -> System.out.println("Invalid Input");
         }
-        obj.updateAll();        //update the database for the particular employee
+        t.changeIsPaid(true);
     }
     private void logout() {
         setLoginStatus(false);
@@ -167,10 +167,7 @@ class Admin extends Employee {
             default -> System.out.println("Invalid Option");
         }
     }
-    void setLoginStatus(boolean status)
-    {
-        this.loginstatus = status;
-    }
+    void setLoginStatus(boolean status) { this.loginstatus = status; }
     private void addEmployee() {
         int id;
         String name, password;
